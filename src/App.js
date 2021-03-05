@@ -8,6 +8,7 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
 // Components
+import Signup from './components/Signup';
 
 function App() {
   // Set state values
@@ -19,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <h1>MERN Authentication</h1>
-      
+  
     </div>
   );
 }
