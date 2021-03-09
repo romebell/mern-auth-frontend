@@ -1,4 +1,3 @@
-// Imports
 import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
@@ -24,24 +23,21 @@ const Login = (props) => {
         const userData = { email, password };
 
         axios.post(`${REACT_APP_SERVER_URL}/users/login`, userData)
-        .then(response => {
-            const { token } = response.data;
-            // save token to localStorage
-            localStorage.setItem('jwtToken', token);
-            // set token to headers
-            setAuthToken(token);
-            // decode token to get the user data
-            const decoded = jwt_decode(token);
-            // set the current user
-            props.nowCurrentUser(decoded); // funnction passed down as props.
-        })
-        .catch(error => {
-            console.log('===> Error on login', error);
-            alert('Either email or password is incorrect. Please try again');
-        });
+            .then(response => {
+                const { token } = response.data;
+
+                localStorage.setItem('jwtToken', token);
+                setAuthToken(token);
+                const decoded = jwt_decode(token);
+                props.nowCurrentUser(decoded);
+            })
+            .catch(error => {
+                console.log('===> Error on login', error);
+                alert('Either email or password is incorrect. Please try again');
+            });
     }
 
-    if (props.user) return <Redirect to="/profile" /> // double check
+    if (props.user) return <Redirect to="/profile" />
 
     return (
         <div className="row mt-4">
