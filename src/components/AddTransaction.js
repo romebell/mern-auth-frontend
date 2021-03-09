@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState';
-
 
 export const AddTransaction = () => {
     const [text, setText] = useState('');
     const [amount, setAmount] = useState(0);
+
     const { addTransaction } = useContext(GlobalContext);
+
     const onSubmit = e => {
         e.preventDefault();
 
@@ -17,23 +18,24 @@ export const AddTransaction = () => {
 
         addTransaction(newTransaction);
     }
+
     return (
         <>
-            <h3> New Transaction</h3>
+            <h3>Add new transaction</h3>
             <form onSubmit={onSubmit}>
-                <div className='form-trans'>
+                <div className="form-control">
                     <label htmlFor="text">Text</label>
-                    <input type="text" value={text} onChange={(e) => setText(e.target.value)} id="text" placeholder="Enter Transaction" />
+                    <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter text..." />
                 </div>
-                <div className="form-trans">
-                    <label htmlFor="amount"> Amount <br />
-               (Input negative - for expense, positive for income) </label>
-                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter Amount" />
+                <div className="form-control">
+                    <label htmlFor="amount"
+                    >Amount <br />
+            (negative - expense, positive - income)</label
+                    >
+                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
                 </div>
-                <button className="btn">Add Transaction</button>
+                <button className="btn">Add transaction</button>
             </form>
-
         </>
     )
 }
-export default AddTransaction;
