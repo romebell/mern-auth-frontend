@@ -1,4 +1,4 @@
-export default (state, action) => {
+const AppReducer = (state, action) => {
     switch (action.type) {
         case 'deleteTransactionn':
             return {
@@ -16,3 +16,5 @@ export default (state, action) => {
 }
 
 //change your state and send it down to your component 
+
+export default AppReducer;
