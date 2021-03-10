@@ -16,6 +16,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
+import Account from './components/Account';
 //import Account from './components/Account';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -74,6 +75,7 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <Route exact path="/" component={Welcome} />
           <Route path="/about" component={About} />
+          <Route path="/account" component={Account} />
         </Switch>
       </div>
       <Footer />

@@ -11,7 +11,7 @@ export const AddTransaction = () => {
         e.preventDefault();
 
         const newTransaction = {
-            id: Math.floor(Math.random() * 100000000),
+            id: Math.floor(Math.random() * 20000000),
             text,
             amount: +amount
         }
@@ -21,11 +21,10 @@ export const AddTransaction = () => {
 
     return (
         <>
-            <h3>Add new transaction</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-control">
                     <label htmlFor="text"></label>
-                    <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Description" />
+                    <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Transaction Description" />
                 </div>
                 <div className="form-control">
                     <label htmlFor="amount"

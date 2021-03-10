@@ -1,24 +1,11 @@
-
 import React from 'react';
-import { Balance } from './Balance';
-import { IncomeExpenses } from './IncomeExpenses';
-import { TransactionList } from './TransactionList';
-import { AddTransaction } from './AddTransaction';
 
-
-import { GlobalProvider } from '../context/GlobalState';
-
-
-function Account() {
+const Welcome = () => {
     return (
-        <GlobalProvider>
-            <div className="account">
-                <Balance />
-                <IncomeExpenses />
-                <TransactionList />
-                <AddTransaction />
-            </div>
-        </GlobalProvider>
-    );
+        <div>
+            <h1>Welcome</h1>
+        </div>
+    )
 }
-export default Account;
+
+export default Welcome;
