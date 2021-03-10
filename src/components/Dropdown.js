@@ -3,24 +3,28 @@ import { NavLink, Link } from 'react-router-dom';
 
 
 class Dropdown extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     
     this.state = {
       showMenu: false,
     };
     console.log(this)
     
-    this.showMenu = this.showMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
+    this.handleClick = this.handleClick.bind(this)
+    // this.showMenu = this.showMenu.bind(this);
+    // this.closeMenu = this.closeMenu.bind(this);
   }
   
   showMenu(event) {
     event.preventDefault();
-    
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
-    });
+    handleClick() {
+        this.setState({ showMenu: true }, () => {
+            this.showMenu: !state.showMenu
+        // document.addEventListener('click', this.closeMenu);
+        });
+    }
+
   }
   
   closeMenu() {
