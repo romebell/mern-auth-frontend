@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { Context } from './Statee';
 
 function moneyFormatter(num) {
     let p = num.toFixed(2).split('.');
@@ -17,7 +17,7 @@ function moneyFormatter(num) {
 }
 
 export const Balance = () => {
-    const { transactions } = useContext(GlobalContext);
+    const { transactions } = useContext(Context);
 
     const amounts = transactions.map(transaction => transaction.amount);
 
@@ -25,7 +25,7 @@ export const Balance = () => {
 
     return (
         <>
-            <h4>Your Balance</h4>
+            <h4>Balance</h4>
             <h1>{moneyFormatter(total)}</h1>
         </>
     )
