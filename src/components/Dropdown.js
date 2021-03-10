@@ -16,16 +16,16 @@ class Dropdown extends Component {
     // this.closeMenu = this.closeMenu.bind(this);
   }
   
-  showMenu(event) {
-    event.preventDefault();
-    handleClick() {
-        this.setState({ showMenu: true }, () => {
-            this.showMenu: !state.showMenu
-        // document.addEventListener('click', this.closeMenu);
-        });
-    }
+  handleClick(event) {
+    // showMenu(event) {
+        event.preventDefault();
+            this.setState(state => ({
+                 showMenu: !state.showMenu
+            // document.addEventListener('click', this.closeMenu);
+            })
+        )
+ }
 
-  }
   
   closeMenu() {
     
@@ -38,9 +38,9 @@ class Dropdown extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.showMenu}>
-          Show menu
-        </button>
+        <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? "show menu" : "show menu"} 
+      </button>
         
         {
           this.state.showMenu
