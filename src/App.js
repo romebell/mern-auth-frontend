@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
+import Dropdown from './components/Dropdown'
 
 // CSS
 import './App.css';
@@ -63,6 +64,7 @@ function App() {
       <h1>MERN Authentication</h1>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
+        <Dropdown />
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route 
