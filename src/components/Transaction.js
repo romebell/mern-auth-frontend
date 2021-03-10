@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { Context } from './Statee';
 
 function moneyFormatter(num) {
     let p = num.toFixed(2).split('.');
@@ -17,7 +17,7 @@ function moneyFormatter(num) {
 }
 
 export const Transaction = ({ transaction }) => {
-    const { deleteTransaction } = useContext(GlobalContext);
+    const { deleteTransaction } = useContext(Context);
 
     const sign = transaction.amount < 0 ? '-' : '+';
 

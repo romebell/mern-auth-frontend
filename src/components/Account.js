@@ -6,19 +6,19 @@ import { TransactionList } from './TransactionList';
 import { AddTransaction } from './AddTransaction';
 
 
-import { GlobalProvider } from '../context/GlobalState';
+import { Pro } from './Statee';
 
 
 function Account() {
     return (
-        <GlobalProvider>
+        <Pro>
             <div className="account">
                 <Balance />
                 <IncomeExpenses />
                 <TransactionList />
                 <AddTransaction />
             </div>
-        </GlobalProvider>
+        </Pro>
     );
 }
 export default Account;
