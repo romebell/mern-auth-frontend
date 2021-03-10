@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import Dropdown from './Dropdown'
+// import Dropdown from './Dropdown'
 
 const Navbar = (props) => {
     return (
@@ -35,6 +35,9 @@ const Navbar = (props) => {
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link"  to="/login">Login</NavLink>
+                            </li>
+                            <li className="nav-item">
+                            <NavLink className="nav-link" to="/account">Account</NavLink>
                             </li>
                           </ul>
                     }
