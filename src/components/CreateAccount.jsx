@@ -1,46 +1,66 @@
-import React from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+const { REACT_APP_SERVER_URL } = process.env;
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  
-  const newTransactionAccount = { institutionName, nickname, accountType, accountNumber, belongsTo };
-    
-  try {
-    const apiCall = axios.post(`${REACT_APP_SERVER_URL}/transaction-accounts/create`, newTransactionAccount)
-    console.log(`New User Created: ${email}`);
-    console.log(apiCall);
-    setRedirect(true);
-  } catch (error) {
-    console.log(`Error: User Creation Failed`, error)
+const CreateAccount = () => {
+  const [institutionName, setInstitutionName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+
+  const handleInstitutionName = (event) => {
+    setInstitutionName(event.target.value);
   }
-}
 
-const About = () => {
+  const handleNickname = (event) => {
+    setNickname(event.target.value);
+  }
+
+  const handleAccountType = (event) => {
+    setAccountType(event.target.value);
+  }
+
+  const handleAccountNumber = (event) => {
+    setAccountNumber(event.target.value);
+  }
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    const newTransactionAccount = { institutionName, nickname, accountType, accountNumber };
+      
+    try {
+      await axios.post(`${REACT_APP_SERVER_URL}/transaction-accounts/create`, newTransactionAccount);
+      console.log(`Account Created: ${nickname || institutionName}`);
+    } catch (error) {
+      const errorsArray = error.response.data
+      for (const e of errorsArray) {
+        console.error(`${e.name}: ${e.message}`)
+      }
+    }
+  }
+  
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-      <label htmlFor="name">Full Name</label>
-      <input type="text" name="name" value={name} onChange={handleName} className="form-control"/>
+      <label htmlFor="institutionName">Institution Name</label>
+      <input type="text" name="institutionName" value={institutionName} onChange={handleInstitutionName} className="form-control"/>
     </div>
     <div className="form-group">
-    <label htmlFor="displayName">Display Name</label>
-    <input type="text" name="displayName" value={displayName} onChange={handleDisplayName} className="form-control"/>
+    <label htmlFor="nickname">Nickname</label>
+    <input type="text" name="nickname" value={nickname} onChange={handleNickname} className="form-control"/>
   </div>
     <div className="form-group">
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"/>
+      <label htmlFor="accountType">Account Type</label>
+      <input type="test" name="accountType" value={accountType} onChange={handleAccountType} className="form-control"/>
     </div>
     <div className="form-group">
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
-    </div>
-    <div className="form-group">
-      <label htmlFor="confirmPassword">Confirm Password</label>
-      <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"/>
+      <label htmlFor="accountNumber">Account Number</label>
+      <input type="test" name="accountNumber" value={accountNumber} onChange={handleAccountNumber} className="form-control"/>
     </div>
     <button type="submit" className="btn btn-primary float-right">Submit</button>
     </form>
-  )
+  );
 }
 
-export default About;
+export default CreateAccount;
