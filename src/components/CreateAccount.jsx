@@ -58,6 +58,7 @@ const CreateAccount = () => {
       <label htmlFor="accountNumber">Account Number</label>
       <input type="test" name="accountNumber" value={accountNumber} onChange={handleAccountNumber} className="form-control"/>
     </div>
+    
     <button type="submit" className="btn btn-primary float-right">Submit</button>
     </form>
   );

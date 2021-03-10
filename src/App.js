@@ -18,6 +18,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
+import CurrencySelector from './components/CurrencySelector';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
