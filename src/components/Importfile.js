@@ -8,6 +8,7 @@ export class Importfile extends React.Component {
 
         this.state
     }
+    render() {
     return (
         <div>
             <CSVReader
@@ -20,4 +21,7 @@ export class Importfile extends React.Component {
             />
         </div>
     )
+    }
 }
+
+export default Importfile

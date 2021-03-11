@@ -17,17 +17,10 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
-<<<<<<< HEAD
-import Importfile from './components/Importfile';
-=======
+// import Importfile from './components/Importfile';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
-import CurrencySelector from './components/CurrencySelector';
-<<<<<<< HEAD
->>>>>>> main
-=======
 import Stock from './components/Stock';
->>>>>>> 8345955d04542ca34a7b4e9e8e098f2e6881cf32
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
@@ -90,7 +83,7 @@ function App() {
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />
         </Switch>
-        <Importfile />
+        {/* <Importfile /> */}
       </div>
       <Footer />
     </div>
