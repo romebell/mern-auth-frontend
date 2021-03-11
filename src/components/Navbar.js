@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-// import Dropdown from './Dropdown'
+import Dropdown from './Dropdown'
 
 const Navbar = (props) => {
     return (
@@ -16,30 +16,34 @@ const Navbar = (props) => {
                             <NavLink className="nav-link" exact to="/">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link"  to="/about">About</NavLink>
+                            <NavLink className="nav-link" to="/about">About</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/account">Account</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/stock">Stocks</NavLink>
                         </li>
                     </ul>
                     {
-                        props.isAuth 
-                        ? <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <NavLink className="nav-link"  to="/profile">Profile</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <span onClick={props.handleLogout} className="nav-link logout-link">Logout</span>
-                            </li>
-                        </ul>
-                        : <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <NavLink className="nav-link"  to="/signup">Sign Up</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link"  to="/login">Login</NavLink>
-                            </li>
-                            <li className="nav-item">
-                            <NavLink className="nav-link" to="/account">Account</NavLink>
-                            </li>
-                          </ul>
+                        props.isAuth
+                            ? <ul className="navbar-nav ml-auto">
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/profile">Profile</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <span onClick={props.handleLogout} className="nav-link logout-link">Logout</span>
+                                </li>
+                            </ul>
+                            : <ul className="navbar-nav ml-auto">
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/login">Login</NavLink>
+                                </li>
+
+                            </ul>
                     }
                 </div>
             </div>
