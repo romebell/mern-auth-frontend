@@ -20,6 +20,7 @@ import Welcome from './components/Welcome';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
 import CurrencySelector from './components/CurrencySelector';
+import Stock from './components/Stock';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
@@ -80,6 +81,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/create-account" component={CreateAccount} />
           <Route path="/account" component={Account} />
+          <Route path="/stock" component={Stock} />
         </Switch>
       </div>
       <Footer />
