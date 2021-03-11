@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
+import Dropdown from './components/Dropdown'
 
 
 // CSS
@@ -16,8 +17,10 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
+import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
-//import Account from './components/Account';
+import CurrencySelector from './components/CurrencySelector';
+import Stock from './components/Stock';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
@@ -66,6 +69,7 @@ function App() {
       <h1>MERN Authentication</h1>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
+        <Dropdown />
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route
@@ -75,7 +79,9 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <Route exact path="/" component={Welcome} />
           <Route path="/about" component={About} />
+          <Route path="/create-account" component={CreateAccount} />
           <Route path="/account" component={Account} />
+          <Route path="/stock" component={Stock} />
         </Switch>
       </div>
       <Footer />
