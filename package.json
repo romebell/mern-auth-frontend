@@ -6,11 +6,18 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+<<<<<<< HEAD
     "axios": "^0.21.0",
+    "csv-reader": "^1.0.7",
+=======
+    "axios": "^0.21.1",
+>>>>>>> 8345955d04542ca34a7b4e9e8e098f2e6881cf32
     "dotenv": "^8.2.0",
+    "flatfile-csv-importer": "^0.2.13",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-excel-renderer": "^1.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
