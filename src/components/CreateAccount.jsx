@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CurrencySelector from "./CurrencySelector";
 const { REACT_APP_SERVER_URL } = process.env;
 
 const CreateAccount = () => {
@@ -7,6 +8,7 @@ const CreateAccount = () => {
   const [nickname, setNickname] = useState("");
   const [accountType, setAccountType] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
+  const [currency, setCurrency] = useState("604952e93d4a9573dbf9f408");
 
   const handleInstitutionName = (event) => {
     setInstitutionName(event.target.value);
@@ -23,15 +25,18 @@ const CreateAccount = () => {
   const handleAccountNumber = (event) => {
     setAccountNumber(event.target.value);
   }
+
+  const handleCurrency = (test) => {
+    setCurrency(test);
+  }
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    const newTransactionAccount = { institutionName, nickname, accountType, accountNumber };
+    const transactionValues = { currency, institutionName, nickname, accountType, accountNumber };
       
     try {
-      await axios.post(`${REACT_APP_SERVER_URL}/transaction-accounts/create`, newTransactionAccount);
-      console.log(`Account Created: ${nickname || institutionName}`);
+      const newTransactionAccount = await axios.post(`${REACT_APP_SERVER_URL}/transaction-accounts/create`, transactionValues);
+      console.log(newTransactionAccount.data);
     } catch (error) {
       const errorsArray = error.response.data
       for (const e of errorsArray) {
@@ -52,13 +57,16 @@ const CreateAccount = () => {
   </div>
     <div className="form-group">
       <label htmlFor="accountType">Account Type</label>
-      <input type="test" name="accountType" value={accountType} onChange={handleAccountType} className="form-control"/>
+      <input type="text" name="accountType" value={accountType} onChange={handleAccountType} className="form-control"/>
     </div>
     <div className="form-group">
       <label htmlFor="accountNumber">Account Number</label>
-      <input type="test" name="accountNumber" value={accountNumber} onChange={handleAccountNumber} className="form-control"/>
+      <input type="text" name="accountNumber" value={accountNumber} onChange={handleAccountNumber} className="form-control"/>
     </div>
-    
+    <div className="form-group">
+      <label htmlFor="currency">Currency</label>
+      <CurrencySelector name="currency" action={handleCurrency} onChange={handleCurrency} className="form-control"/>
+    </div>
     <button type="submit" className="btn btn-primary float-right">Submit</button>
     </form>
   );

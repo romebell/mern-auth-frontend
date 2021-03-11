@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
 
-  const getCurrencies = async () => {
-{/*   const [currency, setCurrency] = useState("");
-
-  const handleCurrency = (event) => {
-    setCurrency(event.target.value);
-  } */}
+class CurrencySelector extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "604952e93d4a9573dbf9f408" };
+    this.handleCurrency = this.handleCurrency.bind(this);
+  }
+  handleCurrency (event) {
+    this.setState({value: event.target.value});
+    this.props.action(event.target.value);
+  }
   
- {/* try {
-      await axios.get(`${REACT_APP_SERVER_URL}/currency`, newTransactionAccount);
-      console.log(`Account Created: ${nickname || institutionName}`);
-    } catch (error) {
-      const errorsArray = error.response.data
-      for (const e of errorsArray) {
-        console.error(`${e.name}: ${e.message}`)
-      }
-    } */}
-  
-  return (
-    <div className="form-group">
-      {/* <label htmlFor="institutionName">Institution Name</label>
-      <input type="text" name="institutionName" value={institutionName} onChange={handleInstitutionName} className="form-control"/> */}
-    </div>
-  );
+  async componentDidMount() {
+    const currencyRequest = await axios.get(`${REACT_APP_SERVER_URL}/currencies`);
+    
+    const currencies = currencyRequest.data.map((currency) => {
+      const { code, name, _id } = currency;
+      return <option key={_id} value={_id}>{code} | {name}</option>
+    });
+    this.setState({ data: currencies });
+  }
+  render() {
+    return (
+      <select value={this.state.value} defaultValue="604952e93d4a9573dbf9f408" onChange={this.handleCurrency} name="currency">{this.state.data}</select>
+    );
+  }
 }
 
-export default getCurrencies;
+export default CurrencySelector;
