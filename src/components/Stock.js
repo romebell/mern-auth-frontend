@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import axios from 'axios';
 const { REACT_APP_STOCK_API_KEY } = process.env;
 
@@ -32,6 +32,7 @@ const SearchStocks = (props) => {
       </form>
     </div>
   );
+
 }
 
 export default SearchStocks;
