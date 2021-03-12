@@ -1,36 +1,67 @@
-import React, { useState } from 'react';
-import StockUnitContainer from './StockUnitContainer'
-const { REACT_APP_STOCK_API_KEY } = process.env;
-const SearchStocks = (props) => {
-    const [stockss, setStock] = useState('')
-    const onInputChange = (event) => {
-        // the value yes event.target.value
-        setStock(event.target.value)
-    }
-    const onFormSubmit = async (event) => {
-        event.preventDefault()
-        let search = stockss
-        const stocks = await fetch(`https://api.polygon.io/v2/reference/tickers?search=${search}&perpage=50&page=1&apiKey=${REACT_APP_STOCK_API_KEY}`);
-        const results = await stocks.json();
-        for (const result of results.tickers) {
-            console.log(result);
-        }
-        // setStock('')
-    }
-    return (
-        <div>
-            <form onSubmit={onFormSubmit}>
-                <input
-                    onChange={onInputChange}
-                    type="text" id="newItemDescription"
-                    placeholder="New stock here"
-                    value={stockss}
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Stocks from "./Stocks"
 
-                />
-                <StockUnitContainer />
-                <button type="submit" id="addTask" className='btn'>search Stock</button>
-            </form>
-        </div>
+
+const { REACT_APP_STOCK_API_KEY } = process.env;
+
+function Stock() {
+    const [stocks, setStocks] = useState([]);
+    const [search, setSearch] = useState('');
+
+    useEffect(() => {
+        axios
+            .get(
+                `https://api.polygon.io/v2/reference/tickers?search=&perpage=50&page=1&apiKey=${REACT_APP_STOCK_API_KEY}`
+            )
+            .then(res => {
+                console.log(res.data.tickers);
+                setStocks(res.data.tickers);
+
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    const handleChange = e => {
+        setSearch(e.target.value);
+    };
+    console.log(stocks)
+    const filteredStocks = stocks.filter(stock =>
+        stock.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+
+
+    return (
+        <div className='coin-app'>
+            <div className='coin-search'>
+                <h1 className='coin-text'>StockMarket Tracker</h1>
+                <form>
+                    <input
+                        className='coin-input'
+                        type='text'
+                        onChange={handleChange}
+                        placeholder='Search'
+                    />
+                </form>
+            </div>
+
+            {stocks.map((stock, i) => {
+                { console.log(stock.tickers) }
+                return (
+                    <Stocks
+                        key={stock.tickers}
+                        name={stock.name}
+                        locale={stock.locale}
+                        currency={stock.currency}
+                    />
+                )
+
+
+            })}
+        </div >
     );
 }
-export default SearchStocks;
+
+
+export default Stock;
