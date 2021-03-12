@@ -21,6 +21,7 @@ import Welcome from './components/Welcome';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
+import Importfile from './components/Importfile';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
@@ -66,13 +67,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>MERN Authentication</h1>
+      <h1>PAISA</h1>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
-        <Dropdown />
+        
+        <Importfile />
         <Switch>
           <Route path='/signup' component={Signup} />
-          <Route
+          <Route  
             path="/login"
             render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
           />

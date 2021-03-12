@@ -38,9 +38,9 @@ class Dropdown extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? "show menu" : "show menu"} 
-      </button>
+        <Link onClick={this.handleClick}>
+        {this.state.isToggleOn ? "Menu" : "Menu"} 
+        </Link>
         
         {
           this.state.showMenu
@@ -53,9 +53,9 @@ class Dropdown extends Component {
               >
                 <NavLink className="nav-link" exact to="/">myDash</NavLink>
                 <NavLink className="nav-link" exact to="/profile">myProfile</NavLink>
-                <NavLink className="nav-link" exact to="/accounts">myAccounts</NavLink>
+                <NavLink className="nav-link" exact to="/account">myAccounts</NavLink>
                 <NavLink className="nav-link" exact to="/budget">myBudget</NavLink>
-                <NavLink className="nav-link" exact to="/stocks">myStocks</NavLink>
+                <NavLink className="nav-link" exact to="/stock">myStocks</NavLink>
                 <NavLink className="nav-link" exact to="/logout">Logout</NavLink>
               </div>
             )
