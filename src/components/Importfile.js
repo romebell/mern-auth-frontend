@@ -73,10 +73,6 @@ render()
           {excelData.map((d) => (
             <tr key={d.Expenses}>
               <th>{d.Expenses}</th>
-            </tr>
-          ))}
-          {excelData.map((d) => (
-            <tr key={d.Income}>
               <th>{d.Income}</th>
             </tr>
           ))}
