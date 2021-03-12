@@ -1,3 +1,8 @@
+.pageheading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 #low {
   color: red;
 }
@@ -5,7 +10,7 @@
 #high {
   color: rgb(15, 161, 15);
 }
-.cryptoT {
+#cryptoT {
   text-transform: uppercase;
 }
 .crypto img {
@@ -61,7 +66,4 @@
   border-bottom: 1px solid;
   width: 850px;
   justify-content: start;
-}
-* {
-  background-color: white;
 }

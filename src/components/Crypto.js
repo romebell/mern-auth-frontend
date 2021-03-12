@@ -3,6 +3,7 @@ import Curr from './Curr';
 import axios from 'axios';
 import '../style/Crypto.css'
 
+
 const { CRYPTO_API } = process.env;
 
 function Crypto() {
@@ -10,13 +11,10 @@ function Crypto() {
     const [filteR, bitFilter] = useState('');
 
     useEffect(() => {
-        axios
-            .get(
-                'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false'
-            )
-            .then(res => {
-                setCurrs(res.data);
-            })
+        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false')
+        .then(res => {
+            setCurrs(res.data);
+        })
     }, []);
 
     const filterBit = e => {
@@ -29,10 +27,11 @@ function Crypto() {
 
     return (
         <div className='cpo'>
-            <div>
-                <h1>CryptoCurrency Tracker</h1>
-                <form>
-                    <input className='search' type='text' onChange={filterBit} placeholder='Find Crypto Currency' /></form>
+            <div className="pageheading">
+                <img src="https://media.giphy.com/media/LukAHGCMfxMbK/giphy.gif" alt="bitcoin" />
+                <div>  <h1>CryptoCurrency Tracker</h1>
+                    <form>
+                        <input className='search' type='text' onChange={filterBit} placeholder='Find Crypto Currency' /></form> </div>
             </div>
             {filteredCurrs.map(curr => {
                 return (
@@ -51,5 +50,4 @@ function Crypto() {
             })}</div>
     );
 }
-
 export default Crypto;

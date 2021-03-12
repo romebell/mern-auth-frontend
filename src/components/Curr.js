@@ -7,7 +7,7 @@ const Curr = ({ rank, image, name, ticker, cur, low, high, curPercent }) => {
         <div className='crypto'>
           <img src={image} alt='crypto' />
           <h1>{name}</h1>
-          <p className='cryptoT'>{ticker}</p>
+          <p id='cryptoT'>{ticker}</p>
         </div>
         <div className='crp'>
           <p id='cur'>${cur}</p>
@@ -18,9 +18,6 @@ const Curr = ({ rank, image, name, ticker, cur, low, high, curPercent }) => {
           ) : (
               <p id='high'>{curPercent.toFixed(3)}%</p>
             )}
-
-
-
         </div>
       </div>
     </div>

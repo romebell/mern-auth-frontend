@@ -23,6 +23,7 @@ import CurrencySelector from './components/CurrencySelector';
 import Stock from './components/Stock';
 import Crypto from './components/Crypto';
 
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
   console.log('===> Hitting a Private Route');
@@ -84,6 +85,7 @@ function App() {
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />
           <Route path="/crypto" component={Crypto} />
+
         </Switch>
       </div>
       <Footer />
