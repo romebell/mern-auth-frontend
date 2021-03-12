@@ -4,7 +4,8 @@ import {OutTable, ExcelRenderer} from 'react-excel-renderer';
 import { render } from "@testing-library/react";
 
 function Importfile() {
-  const [items, setItems] = useState([]);
+  //initial state is an empty array 
+  const [excelData, setExcelData] = useState([]);
 
   const readExcel = (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -45,7 +46,8 @@ function Importfile() {
     });
 
     promise.then((d) => {
-      setItems(d);
+      //console.log(d)
+      setExcelData(d);
     });
   };
 
@@ -68,10 +70,14 @@ render()
           </tr>
         </thead>
         <tbody>
-          {items.map((d) => (
+          {excelData.map((d) => (
             <tr key={d.Expenses}>
-              <th>{console.log("EXPENSES:", d.0)}</th>
-              <td>{d.Description}</td>
+              <th>{d.Expenses}</th>
+            </tr>
+          ))}
+          {excelData.map((d) => (
+            <tr key={d.Income}>
+              <th>{d.Income}</th>
             </tr>
           ))}
         </tbody>
