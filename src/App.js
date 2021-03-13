@@ -21,10 +21,10 @@ import Welcome from './components/Welcome';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
+
 import Crypto from './components/Crypto';
 
 import Importfile from './components/Importfile';
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
   console.log('===> Hitting a Private Route');
@@ -72,7 +72,6 @@ function App() {
       <h1>PAISA</h1>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
-
         <Importfile />
         <Switch>
           <Route path='/signup' component={Signup} />
