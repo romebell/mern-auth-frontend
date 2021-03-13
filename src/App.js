@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import Dropdown from './components/Dropdown'
 
 
 // CSS
@@ -11,7 +10,6 @@ import './App.css';
 
 // Components
 import Signup from './components/Signup';
-import About from './components/About';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
@@ -66,10 +64,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>MERN Authentication</h1>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
-        <Dropdown />
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route
@@ -78,7 +74,6 @@ function App() {
           />
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
           <Route path="/create-account" component={CreateAccount} />
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />

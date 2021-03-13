@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 const { REACT_APP_STOCK_API_KEY } = process.env;
 
 const SearchStocks = (props) => {
@@ -12,10 +11,11 @@ const SearchStocks = (props) => {
   const onFormSubmit = async (event) => {
     event.preventDefault()
     let search = stockss
-    fetch(`https://api.polygon.io/v2/reference/tickers?search=${search}&perpage=50&page=1&apiKey=${REACT_APP_STOCK_API_KEY}`)
-      .then(response => {
-        console.log(response.data);
-      });
+    const stocks = await fetch(`https://api.polygon.io/v2/reference/tickers?search=${search}&perpage=50&page=1&apiKey=${REACT_APP_STOCK_API_KEY}`);
+    const results = await stocks.json();
+    for (const result of results.tickers) {
+      console.log(result);
+    }
     // setStock('')
   }
   
