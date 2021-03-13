@@ -1,11 +1,9 @@
 import axios from 'axios';
 const { REACT_APP_STOCK_API_KEY } = process.env;
 
-
  const SearchStocks = (props) => {
    const [stockss, setStock] = useState('')
    const onInputChange = (event) => {
-     // the value yes event.target.value
      setStock(event.target.value)
    }
 
@@ -37,3 +35,4 @@ const { REACT_APP_STOCK_API_KEY } = process.env;
 }
 
  export default SearchStocks;
+
