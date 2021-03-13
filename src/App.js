@@ -20,6 +20,9 @@ import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
 
+import Crypto from './components/Crypto';
+
+import Importfile from './components/Importfile';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
   console.log('===> Hitting a Private Route');
@@ -77,6 +80,8 @@ function App() {
           <Route path="/create-account" component={CreateAccount} />
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />
+          <Route path="/crypto" component={Crypto} />
+
         </Switch>
         {/* <Importfile /> */}
       </div>
