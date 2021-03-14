@@ -12,24 +12,28 @@ class AccountList extends Component {
     }
   }
   async componentDidMount() {
-  
     // Get the accounts for current user
     const userAccounts = await axios.get(`${REACT_APP_SERVER_URL}/users/transaction-accounts`);
     
     // Map an array of account cards.
-    const accountCards = userAccounts.data.map((account, index) => {
+    const accountCards = await userAccounts.data.map((account, index) => {
       return <AccountCard key={index} name={account.name} accountNumber={account.account_number} balance="$768" />
     });
     
     // Set initial display of account cards after promise resolved
-    this.setState({
+    await this.setState({
       data: accountCards
     });
   }
   
   render() {
     return (
-      <section className="account-list">{this.state.data}</section>
+      <section className="account-list">
+        <div className="account-list-fade-left"></div>
+        <h2>Accounts</h2>
+        <section>{this.state.data}</section>
+        <div className="account-list-fade-right"></div>
+      </section>
     );
   }
 }

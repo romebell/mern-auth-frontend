@@ -43,7 +43,7 @@ class CurrencySelector extends Component {
   render() {
     return (
       // Return an HTML Select element with currency list as Options.
-      <select value={this.state.value} onChange={this.handleCurrency} name="currency">{this.state.data}</select>
+      <select class="form-select" value={this.state.value} onChange={this.handleCurrency} name="currency">{this.state.data}</select>
     );
   }
 }

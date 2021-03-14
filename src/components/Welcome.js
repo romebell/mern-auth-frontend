@@ -1,12 +1,14 @@
 import React from 'react';
-import AccountList from "./AccountList";
+import { Redirect } from 'react-router-dom';
 
-const Welcome = () => {
+const Welcome = (props) => {
+  if (props.user) return <Redirect to="/dashboard" />
+  
   return (
-  <div>
-    <AccountList />
-  </div>
-  )
+    <div>
+      <h1>Welcome</h1>
+    </div>
+  );
 }
 
 export default Welcome;
