@@ -4,19 +4,17 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
-
 // CSS
 import './App.css';
 
 // Components
 import Signup from './components/Signup';
-import Footer from './components/Footer';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Navbar from './components/global/Navbar';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 // import Importfile from './components/Importfile';
-import CreateAccount from './components/CreateAccount';
+import AddAccount from './components/transaction-account/AddAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
 import Dashboard from './components/Dashboard';
@@ -66,7 +64,7 @@ function App() {
   }
 
   return (
-  <div>
+  <div className="container mt-5">
     <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
     <main className="container mt-5">
     <Switch>
@@ -81,14 +79,13 @@ function App() {
       />
       <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
       <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
-      <Route path="/create-account" component={CreateAccount} />
+      <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
       <Route path="/account" component={Account} />
       <Route path="/stock" component={Stock} />
       <Route path="/crypto" component={Crypto} />
     </Switch>
     {/* <Importfile /> */}
     </main>
-    <Footer />
   </div>
   );
 }

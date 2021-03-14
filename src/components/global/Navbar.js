@@ -12,15 +12,6 @@ const Navbar = (props) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarsExample07">
                     <ul className="navbar-nav mr-auto">
-                        {/* <li className="nav-item">
-                            <NavLink className="nav-link" exact to="/">Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/account">Account</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/stock">Stocks</NavLink>
-                        </li> */}
                         <li>
                             <Dropdown />
                         </li>

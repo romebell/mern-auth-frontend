@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import Footer from './components/global/Footer';
 
 ReactDOM.render(
   <Router>
     <App />
+    <Footer />
   </Router>,
   document.getElementById('root')
 );
