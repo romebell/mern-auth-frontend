@@ -3,16 +3,14 @@
 
 body {
   background: #DDEEFC;
+  font-family: ui-rounded, ui-sans-serif, sans-serif;
 }
 
 .footer {
-  position: absolute;
   display: flex;
   align-items: center;
-  bottom: 0;
   height: 5rem;
-  width: 100%;
-  margin-top: 5rem;
+  margin-top: 10rem !important;
 }
 
 /* Account Cards List */

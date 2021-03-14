@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AccountList from "./AccountList";
+import AccountList from "./transaction-account/AccountList";
 
 const Dashboard = (props) => {
    const { handleLogout, user } = props;
