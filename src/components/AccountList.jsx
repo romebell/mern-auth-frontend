@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AccountCard from "./AccountCard";
+import { Link } from "react-router-dom"
 const { REACT_APP_SERVER_URL } = process.env;
 
 
@@ -30,7 +31,10 @@ class AccountList extends Component {
     return (
       <section className="account-list">
         <div className="account-list-fade-left"></div>
-        <h2>Accounts</h2>
+        <header>
+          <h2>Accounts</h2>
+          <Link to="/add-account" aria-label="Add New Account"><i className="bi bi-plus-circle-fill"></i></Link>
+        </header>
         <section>{this.state.data}</section>
         <div className="account-list-fade-right"></div>
       </section>

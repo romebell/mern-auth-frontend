@@ -16,7 +16,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 // import Importfile from './components/Importfile';
-import CreateAccount from './components/CreateAccount';
+import AddAccount from './components/AddAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
 import Dashboard from './components/Dashboard';
@@ -81,7 +81,7 @@ function App() {
       />
       <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
       <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
-      <Route path="/create-account" component={CreateAccount} />
+      <Route path="/add-account" component={AddAccount} />
       <Route path="/account" component={Account} />
       <Route path="/stock" component={Stock} />
       <Route path="/crypto" component={Crypto} />
