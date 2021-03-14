@@ -1,4 +1,4 @@
-import axios from 'axios';
+import React, { useState } from "react";
 const { REACT_APP_STOCK_API_KEY } = process.env;
 
  const SearchStocks = (props) => {

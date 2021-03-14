@@ -19,15 +19,15 @@ import Welcome from './components/Welcome';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
-
+import Dashboard from './components/Dashboard';
 import Crypto from './components/Crypto';
 
 import Importfile from './components/Importfile';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
-  console.log('===> Hitting a Private Route');
+  console.log('Private Route ----------');
   return <Route {...rest} render={(props) => {
-    return token ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+  return token ? <Component {...rest} {...props} /> : <Redirect to="/login" />
   }} />
 }
 
@@ -38,55 +38,58 @@ function App() {
 
 
   useEffect(() => {
-    let token;
+  let token;
 
-    if (!localStorage.getItem('jwtToken')) {
-      setIsAuthenticated(false);
-      console.log('====> Authenticated is now FALSE');
-    } else {
-      token = jwt_decode(localStorage.getItem('jwtToken'));
-      setAuthToken(localStorage.getItem('jwtToken'));
-      setCurrentUser(token);
-    }
+  if (!localStorage.getItem('jwtToken')) {
+    setIsAuthenticated(false);
+    console.log('====> Authenticated is now FALSE');
+  } else {
+    token = jwt_decode(localStorage.getItem('jwtToken'));
+    setAuthToken(localStorage.getItem('jwtToken'));
+    setCurrentUser(token);
+  }
   }, []);
 
   const nowCurrentUser = (userData) => {
-    console.log('===> nowCurrent is here.');
-    setCurrentUser(userData);
-    setIsAuthenticated(true);
+  console.log('===> nowCurrent is here.');
+  setCurrentUser(userData);
+  setIsAuthenticated(true);
   }
 
   const handleLogout = () => {
-    if (localStorage.getItem('jwtToken')) {
-      // remove token for localStorage
-      localStorage.removeItem('jwtToken');
-      setCurrentUser(null);
-      setIsAuthenticated(false);
-    }
+  if (localStorage.getItem('jwtToken')) {
+    // remove token for localStorage
+    localStorage.removeItem('jwtToken');
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+  }
   }
 
   return (
-    <div className="App">
-      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className="container mt-5">
-        <Switch>
-          <Route path='/signup' component={Signup} />
-          <Route
-            path="/login"
-            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
-          />
-          <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-          <Route exact path="/" component={Welcome} />
-          <Route path="/create-account" component={CreateAccount} />
-          <Route path="/account" component={Account} />
-          <Route path="/stock" component={Stock} />
-          <Route path="/crypto" component={Crypto} />
-
-        </Switch>
-        {/* <Importfile /> */}
-      </div>
-      <Footer />
-    </div>
+  <div>
+    <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+    <main className="container mt-5">
+    <Switch>
+      <Route path='/signup' component={Signup} />
+      <Route
+      path="/login"
+      render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
+      />
+      <Route
+      exact path="/"
+      render={(props) => <Welcome {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} 
+      />
+      <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
+      <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
+      <Route path="/create-account" component={CreateAccount} />
+      <Route path="/account" component={Account} />
+      <Route path="/stock" component={Stock} />
+      <Route path="/crypto" component={Crypto} />
+    </Switch>
+    {/* <Importfile /> */}
+    </main>
+    <Footer />
+  </div>
   );
 }
 
