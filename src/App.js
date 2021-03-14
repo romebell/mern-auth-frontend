@@ -19,6 +19,7 @@ import Account from './components/Account';
 import Stock from './components/Stock';
 import Dashboard from './components/Dashboard';
 import Crypto from './components/Crypto';
+import AccountIndex from './components/transaction-account/AccountIndex';
 
 import Importfile from './components/Importfile';
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -81,6 +82,7 @@ function App() {
       <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
       <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
       <Route path="/account" component={Account} />
+      <Route path="/account/:id" component={AccountIndex} />
       <Route path="/stock" component={Stock} />
       <Route path="/crypto" component={Crypto} />
     </Switch>

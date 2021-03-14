@@ -18,7 +18,7 @@ class AccountList extends Component {
     
     // Map an array of account cards.
     const accountCards = await userAccounts.data.map((account, index) => {
-      return <AccountCard key={index} name={account.name} accountNumber={account.account_number} balance={`${account.currency.symbol}${account.balance}`} />
+      return <AccountCard key={index} account={account} />
     });
     
     // Set initial display of account cards after promise resolved
