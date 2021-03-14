@@ -19,8 +19,8 @@ class AccountCard extends Component {
     }
   }
   handleBalance() {
+    if (this.props.account) {
     const { balance, currency } = this.props.account; // Get Currency, Balance
-    const { symbol } = currency; // Get Currency Symbol (ex. $,£,¥ etc.)
   
     // Round balance to nearest whole number
     const roundedBalance = Math.round(balance);
@@ -29,7 +29,8 @@ class AccountCard extends Component {
     const formattedBalance = new Intl.NumberFormat().format(roundedBalance);
     
     // Return the formatted balance with currency symbol
-    return `${symbol}${formattedBalance}`
+    return `${currency.symbol}${formattedBalance}`
+  }
   }
   render() {
     const { _id, name } = this.props.account;
