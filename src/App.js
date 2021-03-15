@@ -82,6 +82,8 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
           <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/account/:id/add-transaction" component={AddTransaction} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/account/:id" component={AccountIndex} user={currentUser} handleLogout={handleLogout} />
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />
           <Route path="/crypto" component={Crypto} />

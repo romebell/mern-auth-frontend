@@ -53,7 +53,7 @@ class AccountCard extends Component {
           </div>
           { cardFlip ? (
             <div className="card-back">
-              <div className="d-grid gap-2 d-md-block">
+              <div className="card-button-split">
               <Link className="btn btn-light" to="" aria-label="Account Settings" ><i className="bi bi-gear-fill"></i></Link>
               <Link className="btn btn-light" to={`/account/${_id}/add-transaction`} aria-label="New Transaction" ><i className="bi bi-plus-circle-fill"></i></Link>
               </div>

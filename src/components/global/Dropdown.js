@@ -50,12 +50,10 @@ class Dropdown extends Component {
                   this.dropdownMenu = element;
                 }}
               >
-                <NavLink className="nav-link" exact to="/">myDash</NavLink>
-                <NavLink className="nav-link" exact to="/profile">myProfile</NavLink>
-                <NavLink className="nav-link" exact to="/account">myAccounts</NavLink>
-                <NavLink className="nav-link" exact to="/budget">myBudget</NavLink>
-                <NavLink className="nav-link" exact to="/stock">myStocks</NavLink>
-                <NavLink className="nav-link" exact to="/Crypto">myCrypto</NavLink>
+                <NavLink className="nav-link" exact to="/">Dashboard</NavLink>
+                <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
+                <NavLink className="nav-link" exact to="/account">Accounts</NavLink>
+                <NavLink className="nav-link" exact to="/Crypto">CryptoCurrency Tracker</NavLink>
                 <NavLink className="nav-link" exact to="/logout">Logout</NavLink>
               </div>
             )
