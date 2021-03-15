@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../style/Crypto.css'
 
 
-const { CRYPTO_API } = process.env;
+// const { CRYPTO_API } = process.env;
 
 function Crypto() {
     const [currs, setCurrs] = useState([]);

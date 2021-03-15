@@ -22,7 +22,7 @@ const Modal = ({header, children, footer, cancelButton}) => {
         <div className="modal-body">
           {children}
         </div>
-        {footer
+        {footer || cancel
         ? <div className="modal-footer mt-4">{ cancel }{ footer }</div>
         : undefined}
       </div>

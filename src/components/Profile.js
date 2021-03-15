@@ -17,12 +17,16 @@ const Profile = (props) => {
   const modalBody = () => {
     if (user) {
       return (
-      <div>
-      <p>Full Name: {name}</p>
-      <p>Display Name: {displayName}</p>
-      <p>Email: {email}</p>
-      <p>ID: {id}</p>
-      </div>
+      <dl>
+        <dt>Full Name</dt>
+          <dd>{name}</dd>
+        <dt>Display Name</dt>
+          <dd>{displayName}</dd>
+        <dt>Email</dt>
+          <dd>{email}</dd>
+        <dt>User ID</dt>
+          <dd>{id}</dd>
+      </dl>
       )
     } else {
       return <h2>Loading...</h2>
@@ -38,7 +42,7 @@ const Profile = (props) => {
    };
    
    return (
-    <Modal header={<h1>Profile</h1>}>
+    <Modal cancelButton header={<h1>Account</h1>}>
       { user ? modalBody() : errorDiv() }
     </Modal>
    );
