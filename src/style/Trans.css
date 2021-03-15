@@ -1,13 +1,8 @@
-*{
-   background-color: white;
-}
-
 #deleteButton{
     font-size: 8px;
 }
 #inputAmount{
     text-align: center;
-
 }
 .amount{
  text-align: center;

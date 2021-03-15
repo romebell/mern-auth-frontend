@@ -1,12 +1,9 @@
-*{
-  background-color: white;
-  align-items: center;
-}
 .pageheading {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 #low {
   color: red;
 }
@@ -32,7 +29,8 @@
   border:thin;
   border-block-width: 10px;
 }
-.container {
+
+.crypto-container {
   display: flex;
   text-align: center;
 }
@@ -49,7 +47,6 @@
   display: flex;
   align-items: center;
   padding-right: 24px;
-
   min-width: 300px;
 }
 
@@ -63,8 +60,13 @@
   flex-direction: column;
   align-items: center;
   display: flex;
+  background: white;
+  border-radius: 2rem;
+  margin: 0 5rem;
+  padding: 3rem 0;
 }
-.align {
+
+.crypto-align {
   display: flex;
   flex-direction: row;
   align-items: center;

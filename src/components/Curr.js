@@ -2,8 +2,8 @@ import React from 'react';
 
 const Curr = ({ rank, image, name, ticker, cur, low, high, curPercent }) => {
   return (
-    <div className='container'>
-      <div className='align'>
+    <div className='crypto-container'>
+      <div className='crypto-align'>
         <div className='crypto'>
           <img src={image} alt='crypto' />
           <h1>{name}</h1>
