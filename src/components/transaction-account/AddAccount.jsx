@@ -80,7 +80,7 @@ const AddAccount = (props) => {
   const accountTypes = ["Checking", "Savings", "Cash"];
   
   const header = (
-    <h2 className="py-2">New Account</h2>
+    <h2>New Account</h2>
   );
   
   const footer = (
