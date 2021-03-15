@@ -27,7 +27,6 @@
   border: none;
   text-align: center;
   border:thin;
-  border-block-width: 10px;
 }
 
 .crypto-container {
@@ -73,5 +72,5 @@
   height: 75px;
   border-bottom: 1px solid;
   width: 850px;
-  justify-content: start;
+  justify-content: flex-start;
 }

@@ -11,9 +11,9 @@ import './App.css';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/global/Navbar';
+import Footer from './components/global/Footer';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
-// import Importfile from './components/Importfile';
 import AddAccount from './components/transaction-account/AddAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
@@ -22,7 +22,6 @@ import Crypto from './components/Crypto';
 import AccountIndex from './components/transaction-account/AccountIndex';
 import AddTransaction from './components/transactions/AddTransaction';
 
-import Importfile from './components/Importfile';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
   console.log('Private Route ----------');
@@ -66,9 +65,9 @@ function App() {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="d-flex flex-column h-100">
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <main className="container mt-5">
+      <main className="container mb-5">
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route
@@ -88,8 +87,8 @@ function App() {
           <Route path="/stock" component={Stock} />
           <Route path="/crypto" component={Crypto} />
         </Switch>
-        {/* <Importfile /> */}
       </main>
+      <Footer />
     </div>
   );
 }

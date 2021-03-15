@@ -6,13 +6,6 @@ body {
   font-family: ui-rounded, ui-sans-serif, sans-serif;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  height: 5rem;
-  margin-top: 10rem !important;
-}
-
 /* Account Cards List */
 /* -------------------------------------------------------------------------- */
 
@@ -50,7 +43,15 @@ body {
   font-size: .9rem;
 }
 
-.transaction-icon {
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.navbar-brand::after {
+  content: " |"
+}
+
+.transaction-icon, .logo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,6 +61,11 @@ body {
   border: 1px gray solid;
   margin-right: .5rem;
   padding: 0.5rem;
+}
+
+.logo {
+  border: 1.5px white solid;
+  background: hsla(0, 0%, 100%, .2);
 }
 
 .transaction img {
@@ -253,4 +259,15 @@ body {
 .rounded-3 {
   border-radius: 1.5rem !important; /* Increase padding */
   padding: 3rem; /* Increase Radius */
+}
+
+.modal-content {
+  border: none;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 .75rem 2rem 0 rgba(0,0,0,0.2);
+}
+
+.btn {
+  border-radius: .75rem !important;
+  padding: .5rem 1rem;
 }

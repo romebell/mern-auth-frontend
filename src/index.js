@@ -8,7 +8,6 @@ import Footer from './components/global/Footer';
 ReactDOM.render(
   <Router>
     <App />
-    <Footer />
   </Router>,
   document.getElementById('root')
 );

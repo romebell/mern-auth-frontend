@@ -45,7 +45,7 @@ class AccountCard extends Component {
               <h3 aria-label="Account Name">{name}</h3>
               <p className="balance" aria-label="Current Account Balance">{this.handleBalance()}</p>
             </div>
-            <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Wells_Fargo_Logo_%282020%29.png" alt="Wells Fargo Logo" />
+            <div className="logo"><i className="bi bi-wallet2"></i></div>
             </section>
             <footer>
               {this.handleAccount_number()}

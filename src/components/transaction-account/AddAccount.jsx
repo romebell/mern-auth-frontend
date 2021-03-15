@@ -3,6 +3,7 @@ import axios from "axios";
 import CurrencySelector from "../CurrencySelector";
 import AccountTypeSelector from "./AccountTypeSelector";
 import { Link } from "react-router-dom";
+import Modal from "../Modal"
 const { REACT_APP_SERVER_URL } = process.env;
 
 const AddAccount = (props) => {
@@ -77,11 +78,19 @@ const AddAccount = (props) => {
   }
   
   const accountTypes = ["Checking", "Savings", "Cash"];
-  const userData = user
-  ? (
-    <div className="col-md-6 offset-md-3">
-      <form className="card card-body bg-white border-0 rounded-3"  onSubmit={handleSubmit}>
-        <h2 className="py-2">New Account</h2>
+  
+  const header = (
+    <h2 className="py-2">New Account</h2>
+  );
+  
+  const footer = (
+    <button form="form-add-account" type="submit" className="btn btn-primary float-right"><i className="bi bi-plus-circle-fill"></i>Add Account</button>
+  );
+  
+  const body = () => {
+    if (user) {
+      return (
+        <form id="form-add-account" className="row g-3"  onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" value={name} onChange={handleName}className="form-control"/>
@@ -106,12 +115,15 @@ const AddAccount = (props) => {
           <label htmlFor="currency">Currency</label>
           <CurrencySelector name="currency" action={handleCurrency}onChange={handleCurrency}/>
         </div>
-        <button type="submit" className="btn btn-primary float-right"><i className="bi bi-plus-circle-fill"></i>Add Account</button>
       </form>
-    </div>
-  )
-  : <h2>Loading…</h2>
-  
+      );
+    } else {
+      return (
+        <h2>Loading…</h2>
+      )
+    }
+  }
+    
   const errorDiv = () => {
     return (
       <div className="text-center pt-4">
@@ -121,9 +133,9 @@ const AddAccount = (props) => {
   };
   
   return (
-    <div>
-      {user ? userData : errorDiv()}
-    </div>
+    <Modal header={header} footer={footer}>
+      {user ? body() : errorDiv()}
+    </Modal>
   );
 }
 

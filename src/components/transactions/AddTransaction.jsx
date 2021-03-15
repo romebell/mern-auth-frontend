@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import CurrencySelector from "../CurrencySelector";
 import AccountSelector from "../AccountSelector";
+import Modal from "../Modal";
 import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -123,56 +124,56 @@ class AddTransaction extends Component {
   
   render() {
     this.handleSession()
-    const data = this.props.user
-    ? (
-      <div className="modal fade show" style={{display: "block"}} tabIndex="1">
-      <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">New Transaction</h5>
-          </div>
-          <div className="modal-body">
-            <form onSubmit={this.handleSubmit} className="row g-3">
-              <div className="col-12">
-                <label htmlFor="inputPayee" className="form-label">Payee</label>
-                <input type="text" className="form-control" id="inputPayee" name="payee" onChange={this.handlePayee} />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputCategory" className="form-label">Category</label>
-                <input type="text" className="form-control" id="inputCategory" name="category" onChange={this.handleCategory} />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputAccount" className="form-label">Account</label>
-                <AccountSelector id="inputAccount" action={this.handleAccount} onChange={this.handleAccount} name="account" params={this.props.match.params}/>
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputCurrency" className="form-label">Currency</label>
-                <CurrencySelector action={this.handleCurrency} onChange={this.handleCurrency} />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputExchangeRate" className="form-label">Exchange Rate</label>
-                <input type="number" step="any" disabled={this.state.disableExchange} className="form-control" id="inputExchangeRate" name="exchange_rate" onChange={this.handleExchange_rate} />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputAmount" className="form-label">Amount</label>
-                <input type="number" step="any" className="form-control" id="inputAmount" name="amount" onChange={this.handleAmount} />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputType" className="form-label">Type</label>
-                <select className="form-select" id="inputType" name="type" onChange={this.handleType} >
-                  <option>Income</option>
-                  <option>Expense</option>
-                </select>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary">Cancel</button>
-                <button type="submit" className="btn btn-primary"><i className="bi bi-plus-circle-fill"></i>Add Transaction</button>
-              </div>
-            </form>
-          </div>
-        </div>
+    
+    const header = (
+      <h2>New Transaction</h2>
+    )
+    
+    const footer = (
+      <>
+      <button type="button" className="btn btn-secondary">Cancel</button>
+      <button type="submit" form="form-add-transaction" className="btn btn-primary"><i className="bi bi-plus-circle-fill"></i>Add Transaction</button>
+      </>
+    )
+    
+    const body = (
+      <form id="form-add-transaction" onSubmit={this.handleSubmit} className="row g-3">
+      <div className="col-12">
+        <label htmlFor="inputPayee" className="form-label">Payee</label>
+        <input type="text" className="form-control" id="inputPayee" name="payee" onChange={this.handlePayee} />
       </div>
-    </div>)
+      <div className="col-md-6">
+        <label htmlFor="inputCategory" className="form-label">Category</label>
+        <input type="text" className="form-control" id="inputCategory" name="category" onChange={this.handleCategory} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputAccount" className="form-label">Account</label>
+        <AccountSelector id="inputAccount" action={this.handleAccount} onChange={this.handleAccount} name="account" params={this.props.match.params}/>
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputCurrency" className="form-label">Currency</label>
+        <CurrencySelector action={this.handleCurrency} onChange={this.handleCurrency} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputExchangeRate" className="form-label">Exchange Rate</label>
+        <input type="number" step="any" disabled={this.state.disableExchange} className="form-control" id="inputExchangeRate" name="exchange_rate" onChange={this.handleExchange_rate} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputAmount" className="form-label">Amount</label>
+        <input type="number" step="any" className="form-control" id="inputAmount" name="amount" onChange={this.handleAmount} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputType" className="form-label">Type</label>
+        <select className="form-select" id="inputType" name="type" onChange={this.handleType} >
+          <option>Income</option>
+          <option>Expense</option>
+        </select>
+      </div>      
+    </form>
+    )
+    
+    const data = this.props.user
+    ? <Modal header={ header } footer={ footer } >{ body }</Modal>
     : <h2>Loading…</h2>
     
     return (
