@@ -70,7 +70,7 @@ function Importfile() {
       const transactionDate = d.date
       const account = d.account
 
-      const transactionValues = { payee, amount, currency, exchange_rate, type, memo, transactionDate };
+      const transactionValues = { payee, amount, currency, exchange_rate, type, memo, transactionDate, category };
       console.log("*****HANDLE FILE****")
       console.log(transactionValues)
       try {
@@ -126,6 +126,9 @@ render()
             ))}
           </tr>
       </table>
+      <h3>
+        {}
+      </h3>
     </div>
   );
 }
