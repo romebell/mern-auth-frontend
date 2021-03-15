@@ -15,9 +15,9 @@ const Navbar = (props) => {
                         <li>
                             <Dropdown />
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <NavLink className="nav-link" to="/Crypto">CryptoCurrency</NavLink>
-                        </li>
+                        </li> */}
                     </ul>
                     {
                         props.isAuth
