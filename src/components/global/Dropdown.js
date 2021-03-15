@@ -9,7 +9,6 @@ class Dropdown extends Component {
     this.state = {
       showMenu: false,
     };
-    console.log(this)
     
     this.handleClick = this.handleClick.bind(this)
     // this.showMenu = this.showMenu.bind(this);
@@ -38,7 +37,7 @@ class Dropdown extends Component {
   render() {
     return (
       <div>
-        <Link onClick={this.handleClick}>
+        <Link to="/" onClick={this.handleClick}>
         {this.state.isToggleOn ? "Menu" : "Menu"} 
         </Link>
         

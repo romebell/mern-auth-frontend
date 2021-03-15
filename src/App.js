@@ -3,34 +3,29 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import Dropdown from './components/Dropdown'
-
 
 // CSS
 import './App.css';
 
 // Components
 import Signup from './components/Signup';
-import About from './components/About';
-import Footer from './components/Footer';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Navbar from './components/global/Navbar';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 // import Importfile from './components/Importfile';
-import CreateAccount from './components/CreateAccount';
+import AddAccount from './components/transaction-account/AddAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
-import AccountUpdateHandler from './components/AccountUpdateHandler'
-
+import Dashboard from './components/Dashboard';
 import Crypto from './components/Crypto';
+import AccountIndex from './components/transaction-account/AccountIndex';
+import AddTransaction from './components/transactions/AddTransaction';
 
 import Importfile from './components/Importfile';
-
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
-  console.log('===> Hitting a Private Route');
+  console.log('Private Route ----------');
   return <Route {...rest} render={(props) => {
     return token ? <Component {...rest} {...props} /> : <Redirect to="/login" />
   }} />
@@ -71,30 +66,28 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>PAISA</h1>
+    <div className="container mt-5">
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className="container mt-5">
+      <main className="container mt-5">
         <Switch>
           <Route path='/signup' component={Signup} />
-          <Route  
+          <Route
             path="/login"
             render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
           />
+          <Route
+            exact path="/"
+            render={(props) => <Welcome {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
+          />
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-          <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
-          <Route path="/create-account" component={CreateAccount} />
+          <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />
           <Route path="/crypto" component={Crypto} />
-          <Route path="/update-account" component={AccountUpdateHandler} />
-
-
         </Switch>
         {/* <Importfile /> */}
-      </div>
-      <Footer />
+      </main>
     </div>
   );
 }

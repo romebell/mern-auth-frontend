@@ -15,6 +15,5 @@ const AppReducer = (state, action) => {
     }
 }
 
-//change your state and send it down to your component 
 
 export default AppReducer;

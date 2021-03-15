@@ -11,11 +11,8 @@ function moneyFormatter(num) {
             .reduce(function (acc, num, i, orig) {
                 return num === '-' ? acc : num + (i && !(i % 3) ? ',' : '') + acc;
             }, '') +
-        '.' +
-        p[1]
-    );
+        '.' + p[1]);
 }
-
 export const Balance = () => {
     const { transactions } = useContext(Context);
 

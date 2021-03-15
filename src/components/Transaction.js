@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from './Statee';
+import '../style/Trans.css'
+
 
 function moneyFormatter(num) {
     let p = num.toFixed(2).split('.');
@@ -18,12 +20,9 @@ function moneyFormatter(num) {
 
 export const Transaction = ({ transaction }) => {
     const { deleteTransaction } = useContext(Context);
-
     const sign = transaction.amount < 0 ? '-' : '+';
-
     return (
-        <li className={transaction.amount < 0 ? 'minus' : 'plus'}>
-            {transaction.text} <span>{sign}{moneyFormatter(transaction.amount)}</span><button onClick={() => deleteTransaction(transaction.id)} className="deleteButton">x</button>
-        </li>
+        <li>
+            {transaction.text} <span>{sign}{moneyFormatter(transaction.amount)}</span><button onClick={() => deleteTransaction(transaction.id)} id="deleteButton">remove</button></li>
     )
 }
