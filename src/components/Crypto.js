@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Curr from './Curr';
 import axios from 'axios';
-import '../style/Crypto.css'
+// import '../style/Crypto.css'
 
 
 const { CRYPTO_API } = process.env;
