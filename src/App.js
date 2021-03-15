@@ -21,6 +21,7 @@ import Welcome from './components/Welcome';
 import CreateAccount from './components/CreateAccount';
 import Account from './components/Account';
 import Stock from './components/Stock';
+import AccountUpdateHandler from './components/AccountUpdateHandler'
 
 import Crypto from './components/Crypto';
 
@@ -87,6 +88,8 @@ function App() {
           <Route path="/account" component={Account} />
           <Route path="/stock" component={Stock} />
           <Route path="/crypto" component={Crypto} />
+          <Route path="/update-account" component={AccountUpdateHandler} />
+
 
         </Switch>
         {/* <Importfile /> */}
