@@ -13,3 +13,6 @@
  text-align: center;
  position: relative;
 }
+.list{
+    list-style-type: none;
+}

@@ -1,5 +1,6 @@
 *{
   background-color: white;
+  align-items: center;
 }
 .pageheading {
   display: flex;
