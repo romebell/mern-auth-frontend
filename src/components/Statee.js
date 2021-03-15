@@ -8,22 +8,20 @@ const initialState = {
 export const Context = createContext(initialState);
 
 export const Pro = ({ children }) => {
-    const [state, dispatch] = useReducer(ChangeState, initialState);
+    const [state, aDD] = useReducer(ChangeState, initialState);
 
-    //actions that make call to reducer 
     function deleteTransaction(id) {
-        dispatch({
+        aDD({
             type: "deleteTransactionnb",
             payload: id
         });
     }
     function addTransaction(transaction) {
-        dispatch({
+        aDD({
             type: "addTransactionn",
             payload: transaction
         });
     }
-
     return (<Context.Provider value={{
         transactions: state.transactions,
         deleteTransaction,
@@ -31,5 +29,4 @@ export const Pro = ({ children }) => {
     }}>
         {children}
     </Context.Provider>);
-
 }

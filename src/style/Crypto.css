@@ -1,3 +1,7 @@
+*{
+  background-color: white;
+  align-items: center;
+}
 .pageheading {
   display: flex;
   flex-direction: row;
@@ -21,10 +25,12 @@
 
 .search {
   display: flex;
-  width: 400px;
-  height: 60px;
+  width: 320px;
+  height: 40px;
   border: none;
   text-align: center;
+  border:thin;
+  border-block-width: 10px;
 }
 .container {
   display: flex;

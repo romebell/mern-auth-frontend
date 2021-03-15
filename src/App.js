@@ -27,7 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
   console.log('Private Route ----------');
   return <Route {...rest} render={(props) => {
-  return token ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+    return token ? <Component {...rest} {...props} /> : <Redirect to="/login" />
   }} />
 }
 
@@ -38,59 +38,57 @@ function App() {
 
 
   useEffect(() => {
-  let token;
+    let token;
 
-  if (!localStorage.getItem('jwtToken')) {
-    setIsAuthenticated(false);
-    console.log('====> Authenticated is now FALSE');
-  } else {
-    token = jwt_decode(localStorage.getItem('jwtToken'));
-    setAuthToken(localStorage.getItem('jwtToken'));
-    setCurrentUser(token);
-  }
+    if (!localStorage.getItem('jwtToken')) {
+      setIsAuthenticated(false);
+      console.log('====> Authenticated is now FALSE');
+    } else {
+      token = jwt_decode(localStorage.getItem('jwtToken'));
+      setAuthToken(localStorage.getItem('jwtToken'));
+      setCurrentUser(token);
+    }
   }, []);
 
   const nowCurrentUser = (userData) => {
-  console.log('===> nowCurrent is here.');
-  setCurrentUser(userData);
-  setIsAuthenticated(true);
+    console.log('===> nowCurrent is here.');
+    setCurrentUser(userData);
+    setIsAuthenticated(true);
   }
 
   const handleLogout = () => {
-  if (localStorage.getItem('jwtToken')) {
-    // remove token for localStorage
-    localStorage.removeItem('jwtToken');
-    setCurrentUser(null);
-    setIsAuthenticated(false);
-  }
+    if (localStorage.getItem('jwtToken')) {
+      // remove token for localStorage
+      localStorage.removeItem('jwtToken');
+      setCurrentUser(null);
+      setIsAuthenticated(false);
+    }
   }
 
   return (
-  <div>
-    <Navbar className="container" handleLogout={handleLogout} isAuth={isAuthenticated} />
-    <main className="container">
-    <Switch>
-      <Route path='/signup' component={Signup} />
-      <Route
-      path="/login"
-      render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
-      />
-      <Route
-      exact path="/"
-      render={(props) => <Welcome {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} 
-      />
-      <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-      <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
-      <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
-      <PrivateRoute path="/account/:id/add-transaction" component={AddTransaction} user={currentUser} handleLogout={handleLogout} />
-      <PrivateRoute path="/account/:id" component={AccountIndex} user={currentUser} handleLogout={handleLogout} />
-      <Route path="/account" component={Account} />
-      <Route path="/stock" component={Stock} />
-      <Route path="/crypto" component={Crypto} />
-    </Switch>
-    {/* <Importfile /> */}
-    </main>
-  </div>
+    <div className="container mt-5">
+      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+      <main className="container mt-5">
+        <Switch>
+          <Route path='/signup' component={Signup} />
+          <Route
+            path="/login"
+            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
+          />
+          <Route
+            exact path="/"
+            render={(props) => <Welcome {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
+          />
+          <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
+          <Route path="/account" component={Account} />
+          <Route path="/stock" component={Stock} />
+          <Route path="/crypto" component={Crypto} />
+        </Switch>
+        {/* <Importfile /> */}
+      </main>
+    </div>
   );
 }
 
