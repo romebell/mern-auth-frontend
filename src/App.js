@@ -4,8 +4,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
-
-
 // CSS
 import './App.css';
 
@@ -21,6 +19,8 @@ import Account from './components/Account';
 import Stock from './components/Stock';
 import Dashboard from './components/Dashboard';
 import Crypto from './components/Crypto';
+import AccountIndex from './components/transaction-account/AccountIndex';
+import AddTransaction from './components/transactions/AddTransaction';
 
 import Importfile from './components/Importfile';
 const PrivateRoute = ({ component: Component, ...rest }) => {

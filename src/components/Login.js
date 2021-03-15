@@ -52,14 +52,14 @@ const Login = (props) => {
             <div className="mb-3">
             <label className="col-form-label col-form-label-lg" htmlFor="email">Email</label>
               <div className="input-group">
-                <span className="input-group-text"><i class="bi bi-at"></i></span>
+                <span className="input-group-text"><i className="bi bi-at"></i></span>
                 <input className="form-control form-control-lg" type="email" name="email" value={email} onChange={handleEmail}/>
               </div>
             </div>
             <div className="mb-3">
             <label className="col-form-label col-form-label-lg" htmlFor="password">Password</label>
               <div className="input-group">
-                <span className="input-group-text"><i class="bi bi-key-fill"></i></span>
+                <span className="input-group-text"><i className="bi bi-key-fill"></i></span>
                 <input className="form-control form-control-lg col-sm-3" type="password" name="password" value={password} onChange={handlePassword}/>
               </div>
             </div>
