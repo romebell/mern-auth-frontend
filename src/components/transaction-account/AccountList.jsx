@@ -14,17 +14,21 @@ class AccountList extends Component {
   }
   async componentDidMount() {
     // Get the accounts for current user
-    const userAccounts = await axios.get(`${REACT_APP_SERVER_URL}/users/transaction-accounts`);
-    
-    // Map an array of account cards.
-    const accountCards = await userAccounts.data.map((account, index) => {
-      return <AccountCard key={index} account={account} />
-    });
-    
-    // Set initial display of account cards after promise resolved
-    await this.setState({
-      data: accountCards
-    });
+    try {
+      const userAccounts = await axios.get(`${REACT_APP_SERVER_URL}/users/transaction-accounts`);
+      
+      // Map an array of account cards.
+      const accountCards = userAccounts.data.map((account, index) => {
+        return <AccountCard key={index} account={account} cardFlip/>
+      });
+      
+      // Set initial display of account cards after promise resolved
+      this.setState({
+        data: accountCards
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   
   render() {

@@ -23,6 +23,56 @@ body {
   padding: .5rem; /* Confine scrollbars within border radius */
 }
 
+.transaction-list {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem; /* Confine scrollbars within border radius */
+  height: 50rem;
+  width: 20rem;
+  overflow: scroll;
+}
+
+.transaction header {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.transaction h3 {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-date {
+  color: gray;
+  font-size: .9rem;
+}
+
+.transaction-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 100%;
+  border: 1px gray solid;
+  margin-right: .5rem;
+  padding: 0.5rem;
+}
+
+.transaction img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+}
+
+.transaction i {
+  font-size: 1.5rem;
+  color: gray;
+}
+
 .account-list header {
   display: flex;
   align-items: center;
@@ -87,6 +137,12 @@ body {
     backface-visibility: hidden; /* Make back of card visible when flipped */
 }
 
+/* Align Loading spinner to center of card */
+.card-loading {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 .card-front {
   justify-content: space-between; /* Push account balance to bottom of card */
 }
@@ -107,7 +163,7 @@ body {
     color: white;
   /* ---- Positioning & Sizing ---- */
     position: relative; /* Child element is absolute */
-    min-width: 15rem;
+    width: 15rem;
     height: 10rem;
     margin-right: 2rem;
   /* ----- Border ----- */
@@ -149,6 +205,7 @@ body {
   line-height: 1;
 }
 
+/* Prepend hidden symbols to start of account number (ex. ••••1234) */
 .account-number::before {
   content: "••••";
 }
@@ -177,15 +234,14 @@ body {
 /* Bootstrap Icons */
 /* -------------------------------------------------------------------------- */
 
+/* Leave a gap between icon and text */
 .bi {
-  margin: .5rem; /* Leave a gap between icon and text */
+  margin: .5rem; /* bi = Bootstrap Icons */
 }
 
+/* Override Bootstrap class for rounded corners */
+/* Used in Paisa for login modals etc. */
 .rounded-3 {
-  border-radius: 1.5rem !important;
-  padding: 3rem;
-}
-
-.test {
-  background: red;
+  border-radius: 1.5rem !important; /* Increase padding */
+  padding: 3rem; /* Increase Radius */
 }

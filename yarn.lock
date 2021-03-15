@@ -1788,6 +1788,13 @@
   "resolved" "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz"
   "version" "2.4.0"
 
+"@types/papaparse@^5.0.4":
+  "integrity" "sha512-TlqGskBad6skAgx2ifQmkO/FwiwObuWltBvX2bDceQhXh9IyZ7jYCK7qwhjB67kxw+0LJDXXM4jN3lcGqm1g5w=="
+  "resolved" "https://registry.npmjs.org/@types/papaparse/-/papaparse-5.2.5.tgz"
+  "version" "5.2.5"
+  dependencies:
+    "@types/node" "*"
+
 "@types/parse-json@^4.0.0":
   "integrity" "sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA=="
   "resolved" "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz"
@@ -8133,6 +8140,11 @@
   "resolved" "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz"
   "version" "1.0.11"
 
+"papaparse@^5.2.0":
+  "integrity" "sha512-Lb7jN/4bTpiuGPrYy4tkKoUS8sTki8zacB5ke1p5zolhcSE4TlWgrlsxjrDTbG/dFVh07ck7X36hUf/b5V68pg=="
+  "resolved" "https://registry.npmjs.org/papaparse/-/papaparse-5.3.0.tgz"
+  "version" "5.3.0"
+
 "parallel-transform@^1.1.0":
   "integrity" "sha512-P2vSmIu38uIlvdcU7fDkyrxj33gTUy/ABO5ZUbGowxNCopBq/OoD42bP4UmMrJoPyk4Uqf0mu3mtWBhHCZD8yg=="
   "resolved" "https://registry.yarnpkg.com/parallel-transform/-/parallel-transform-1.2.0.tgz"
@@ -9399,6 +9411,14 @@
   "integrity" "sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA=="
   "resolved" "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz"
   "version" "17.0.1"
+
+"react-papaparse@^3.11.1":
+  "integrity" "sha512-/TGscChB9rtaqKbQOWXpGQ+hFf+6EWxV5iRi1V1tCf0WW+dT4oy961QpdPUDZNcUakEXdkuRzdi+z8yNTRGCQQ=="
+  "resolved" "https://registry.npmjs.org/react-papaparse/-/react-papaparse-3.11.1.tgz"
+  "version" "3.11.1"
+  dependencies:
+    "@types/papaparse" "^5.0.4"
+    "papaparse" "^5.2.0"
 
 "react-refresh@^0.8.3":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="

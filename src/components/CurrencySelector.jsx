@@ -17,28 +17,32 @@ class CurrencySelector extends Component {
   
   async componentDidMount() {
     // Get list of all currency values from server
-    const currencyRequest = await axios.get(`${REACT_APP_SERVER_URL}/currencies`);
-    
-    // Map currencies to HTML Options elements
-    const currencies = currencyRequest.data.map((currency) => {
-      const { code, name, _id } = currency;
-      // Set the initial state value to USD (default):
-      // This will visibly update the selected option to the user,
-      // This will *not* update the form value in the parent Component
-      if (code === "USD") {
-        this.setState({
-          value: _id
-        });
-        // Push USD id to parent Component via handleCurrency Callback,
-        // Sets a default value for submission in a larger form Component
-        this.props.action(_id);
-      }
-      return <option key={_id} value={_id}>{code} | {name}</option>
-    });
-    // Set State data to array of HTML Option elements
-    this.setState({
-      data: currencies
-    });
+    try {
+      const currencyRequest = await axios.get(`${REACT_APP_SERVER_URL}/currencies`);
+      
+      // Map currencies to HTML Options elements
+      const currencies = currencyRequest.data.map((currency) => {
+        const { code, name, _id } = currency;
+        // Set the initial state value to USD (default):
+        // This will visibly update the selected option to the user,
+        // This will *not* update the form value in the parent Component
+        if (code === "USD") {
+          this.setState({
+            value: _id
+          });
+          // Push USD id to parent Component via handleCurrency Callback,
+          // Sets a default value for submission in a larger form Component
+          this.props.action(_id);
+        }
+        return <option key={_id} value={_id}>{code} | {name}</option>
+      });
+      // Set State data to array of HTML Option elements
+      this.setState({
+        data: currencies
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   render() {
     return (

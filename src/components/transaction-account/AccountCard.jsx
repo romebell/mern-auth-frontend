@@ -20,22 +20,24 @@ class AccountCard extends Component {
   }
   handleBalance() {
     if (this.props.account) {
-    const { balance, currency } = this.props.account; // Get Currency, Balance
-  
-    // Round balance to nearest whole number
-    const roundedBalance = Math.round(balance);
+      const { balance, currency } = this.props.account; // Get Currency, Balance
     
-    // Format balance in regional locale (ex. U.S. ##,###.##)
-    const formattedBalance = new Intl.NumberFormat().format(roundedBalance);
-    
-    // Return the formatted balance with currency symbol
-    return `${currency.symbol}${formattedBalance}`
-  }
+      // Round balance to nearest whole number
+      const roundedBalance = Math.round(balance);
+      
+      // Format balance in regional locale (ex. U.S. ##,###.##)
+      const formattedBalance = new Intl.NumberFormat().format(roundedBalance);
+      
+      // Return the formatted balance with currency symbol
+      return `${currency.symbol}${formattedBalance}`
+    }
   }
   render() {
-    const { _id, name } = this.props.account;
-    return (
-      <div className="card-flip">
+    if (this.props.account) {
+    const { account, cardFlip } = this.props;
+    const { _id, name } = account;
+    return (     
+      <div className={ cardFlip ? "card-flip" : undefined }>
         <article className="account-card" aria-label={`Account Card for ${name}`}>
           <div className="card-front">
             <section>
@@ -49,16 +51,29 @@ class AccountCard extends Component {
               {this.handleAccount_number()}
             </footer>
           </div>
-          <div className="card-back">
-          <div className="d-grid gap-2 d-md-block">
-            <Link className="btn btn-light" to="" aria-label="Account Settings" ><i className="bi bi-gear-fill"></i></Link>
-            <Link className="btn btn-light" to="" aria-label="New Transaction" ><i className="bi bi-plus-circle-fill"></i></Link>
+          { cardFlip ? (
+            <div className="card-back">
+              <div className="d-grid gap-2 d-md-block">
+              <Link className="btn btn-light" to="" aria-label="Account Settings" ><i className="bi bi-gear-fill"></i></Link>
+              <Link className="btn btn-light" to={`/account/${_id}/add-transaction`} aria-label="New Transaction" ><i className="bi bi-plus-circle-fill"></i></Link>
+              </div>
+              <Link className="btn btn-light" to={`/account/${_id}`} ><i className="bi bi-card-checklist"></i>Transactions</Link>
             </div>
-            <Link className="btn btn-light" to={`/account/${_id}`} ><i className="bi bi-card-checklist"></i>Transactions</Link>
-          </div>
+          ) : undefined }
         </article>
       </div>
     );
+    } else {
+      return (
+        <article className="account-card" aria-label="Account Card">
+          <div className="card-front card-loading">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading Content…</span>
+            </div>
+          </div>
+        </article>
+      )
+    }
   }
 }
 

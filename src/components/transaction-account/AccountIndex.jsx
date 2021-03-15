@@ -1,41 +1,42 @@
-import React, { Component } from 'react';
-import axios from "axios";
+import React, { Component } from "react";
 import AccountCard from "./AccountCard";
+import TransactionList from "../transactions/TransactionList";
+import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
 
 class AccountIndex extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      account: "",
-      transactions: ""
+      transactions: undefined,
+      account: undefined
     }
+    
   }
   async componentDidMount() {
-    const { id } = this.props.match.params; // Get Transaction Account ID
+    // Get the ID of the account from URL parameters
+    const { id } = this.props.match.params;
     
-    // Get Transactions and Account information
+    // Get the transactions and account
     const transactionAccount = await axios.get(`${REACT_APP_SERVER_URL}/transaction-accounts/${id}/transactions`);
-    
-    // Set state of state.account and state.transactions
+
+    // Set initial display of account cards after promise resolved
     await this.setState({
       ...transactionAccount.data
     });
   }
   render() {
     return (
-      <div className="">
-        <div className="account-list">
-          <header>
-            <h2>Account</h2>
-          </header>
-          <section>
-            <AccountCard account={this.state.account} />
-          </section>
-        </div>
-        <div className="transaction-list">
-        
-        </div>
+      <div className="container-fluid">
+        <header>
+          <h2>Account</h2>
+        </header>
+        <aside>
+          <AccountCard account={this.state.account} />
+        </aside>
+        <section>
+          <TransactionList transactions={this.state.transactions} />
+        </section>
       </div>
     );
   }

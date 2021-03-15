@@ -20,6 +20,7 @@ import Stock from './components/Stock';
 import Dashboard from './components/Dashboard';
 import Crypto from './components/Crypto';
 import AccountIndex from './components/transaction-account/AccountIndex';
+import AddTransaction from './components/transactions/AddTransaction';
 
 import Importfile from './components/Importfile';
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -65,9 +66,9 @@ function App() {
   }
 
   return (
-  <div className="container mt-5">
-    <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-    <main className="container mt-5">
+  <div>
+    <Navbar className="container" handleLogout={handleLogout} isAuth={isAuthenticated} />
+    <main className="container">
     <Switch>
       <Route path='/signup' component={Signup} />
       <Route
@@ -81,7 +82,8 @@ function App() {
       <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
       <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
       <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
-      <Route path="/account/:id" component={AccountIndex} />
+      <PrivateRoute path="/account/:id/add-transaction" component={AddTransaction} user={currentUser} handleLogout={handleLogout} />
+      <PrivateRoute path="/account/:id" component={AccountIndex} user={currentUser} handleLogout={handleLogout} />
       <Route path="/account" component={Account} />
       <Route path="/stock" component={Stock} />
       <Route path="/crypto" component={Crypto} />
