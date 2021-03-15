@@ -133,7 +133,7 @@ const AddAccount = (props) => {
   };
   
   return (
-    <Modal header={header} footer={footer}>
+    <Modal header={header} footer={footer} cancelButton>
       {user ? body() : errorDiv()}
     </Modal>
   );

@@ -122,6 +122,8 @@ class AddTransaction extends Component {
     });
   }
   
+  
+  
   render() {
     this.handleSession()
     
@@ -131,7 +133,6 @@ class AddTransaction extends Component {
     
     const footer = (
       <>
-      <button type="button" className="btn btn-secondary">Cancel</button>
       <button type="submit" form="form-add-transaction" className="btn btn-primary"><i className="bi bi-plus-circle-fill"></i>Add Transaction</button>
       </>
     )
@@ -173,7 +174,7 @@ class AddTransaction extends Component {
     )
     
     const data = this.props.user
-    ? <Modal header={ header } footer={ footer } >{ body }</Modal>
+    ? <Modal header={ header } footer={ footer } cancelButton >{ body }</Modal>
     : <h2>Loading…</h2>
     
     return (
