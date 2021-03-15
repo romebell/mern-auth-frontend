@@ -31,7 +31,7 @@ function Crypto() {
                 <img src="https://media.giphy.com/media/LukAHGCMfxMbK/giphy.gif" alt="bitcoin" />
                 <div>  <h1>CryptoCurrency Tracker</h1>
                     <form>
-                        <input className='search' type='text' onChange={filterBit} placeholder='Find Crypto Currency' /></form> </div>
+                        <input className='form-control' type='text' onChange={filterBit} placeholder='Search' /></form> </div>
             </div>
             {filteredCurrs.map(curr => {
                 return (

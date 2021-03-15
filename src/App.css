@@ -173,11 +173,20 @@ body {
     transform-style: preserve-3d;
 }
 
+.card-button-split {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* Account name */
 .account-card h3 {
   font-size: 1rem;
   margin: 0;
   font-weight: 300;
+}
+
+.account-card .btn-light {
+  background: hsla(0, 0%, 100%, .6);
 }
 
 /* Current account balance text */
