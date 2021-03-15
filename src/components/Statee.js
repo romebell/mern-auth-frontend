@@ -10,7 +10,6 @@ export const Context = createContext(initialState);
 export const Pro = ({ children }) => {
     const [state, dispatch] = useReducer(ChangeState, initialState);
 
-    //actions that make call to reducer 
     function deleteTransaction(id) {
         dispatch({
             type: "deleteTransactionnb",
