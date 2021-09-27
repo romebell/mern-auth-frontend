@@ -49,7 +49,7 @@ const handleSubmit = (e) => {
     // password length >= 8 characters
     if (password === confirmPassword && password.length >= 8) {
         const newUser = { name, email, password };
-        axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
+        axios.post(`${REACT_APP_SERVER_URL}/users/signup`, newUser)
         .then(response => {
             console.log('===> Yay, new user');
             console.log(response);
@@ -136,7 +136,7 @@ const Signup = () => {
         // password length >= 8 characters
         if (password === confirmPassword && password.length >= 8) {
             const newUser = { name, email, password };
-            axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
+            axios.post(`${REACT_APP_SERVER_URL}/users/signup`, newUser)
             .then(response => {
                 console.log('===> Yay, new user');
                 console.log(response);
