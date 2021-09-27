@@ -1,5 +1,17 @@
 # MERN Authentication Frontend
 
+| Components | Links to Code | Description |
+| --- | --- | --- |
+| `App`| [`App`](#) | The component that manages the entire app |
+| `Signup`| [`Signup`](#) | Allow the user to signup |
+| `Login`| [`Login`](#) | Allows the user to login to the app |
+| `Navbar`| [`Navbar`](#) | Make `App` class component |
+| `Profile`| [`Profile`](#) | A component that displays the user profile information |
+| `setAuthToken`| [`setAuthToken`](#) | A utility function that adds a token to the `Authentication` header to manage current user |
+| `About`| [`About`](#) | A component that decribes the app |
+| `Footer`| [`Footer`](#) | A footer that goes on each component |
+| `Welcome`| [`Welcome`](#) | A welcome page for the user |
+
 ### `App Component`
 
 ### Imports for `App`
