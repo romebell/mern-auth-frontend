@@ -1,0 +1,13 @@
+#deleteButton{
+    font-size: 8px;
+}
+#inputAmount{
+    text-align: center;
+}
+.amount{
+ text-align: center;
+ position: relative;
+}
+.list{
+    list-style-type: none;
+}

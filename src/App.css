@@ -1,14 +1,273 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
+/* Import Bootstrap Icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
+
 body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
+  background: #DDEEFC;
+  font-family: ui-rounded, ui-sans-serif, sans-serif;
 }
-.footer {
+
+/* Account Cards List */
+/* -------------------------------------------------------------------------- */
+
+.account-list {
+  position: relative;
+  background: white;
+  border-radius: 1.5rem;
+  padding: .5rem; /* Confine scrollbars within border radius */
+}
+
+.transaction-list {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem; /* Confine scrollbars within border radius */
+  height: 50rem;
+  width: 20rem;
+  overflow: scroll;
+}
+
+.transaction header {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.transaction h3 {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-date {
+  color: gray;
+  font-size: .9rem;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.navbar-brand::after {
+  content: " |"
+}
+
+.transaction-icon, .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 100%;
+  border: 1px gray solid;
+  margin-right: .5rem;
+  padding: 0.5rem;
+}
+
+.logo {
+  border: 1.5px white solid;
+  background: hsla(0, 0%, 100%, .2);
+}
+
+.transaction img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+}
+
+.transaction i {
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.account-list header {
+  display: flex;
+  align-items: center;
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  line-height: 60px; /* Vertically center the text there */
+  text-align: left;
+  margin: 0;
+  padding: 1rem 1.5rem;
+  z-index: 1; /* Prevent heading from being hidden by gradients */
+}
+
+.account-list header i {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
+
+.account-list > section {
+  display: flex;
+  overflow: scroll;
+  padding: 4.5rem 5rem 3rem 5rem;
+}
+
+/* Create the illusion that cards are fading out near container sides */
+.account-list-fade-left, .account-list-fade-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 5rem;
+  z-index: 1; /* Place gradients above account cards */
+  background: linear-gradient(0.25turn, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 1) 75%,  hsla(0, 0%, 100%, 1));
+  border-radius: 0 1.5rem 1.5rem 0;
+}
+
+.account-list-fade-left {
+  left: 0;
+  transform: rotate(180deg); /* Rotate gradient */
+}
+
+.account-list-fade-right {
+  right: 0
+}
+
+/* Account Cards */
+/* -------------------------------------------------------------------------- */
+ 
+.card-front, .card-back {
+  /* ---- Positioning & Sizing ---- */
+    position: absolute; /* Parent element is relative */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 1.25rem;
+  /* ---- Flex ---- */
+    display: flex;
+    flex-direction: column;
+  /* ---- Background ---- */
+    background: gray; /* Fallback background */
+    background: radial-gradient(farthest-side at center top, #FF5353, #903DCD);
+  /* ---- Border ---- */
+    border-radius: 1.5rem;
+    backface-visibility: hidden; /* Make back of card visible when flipped */
+}
+
+/* Align Loading spinner to center of card */
+.card-loading {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.card-front {
+  justify-content: space-between; /* Push account balance to bottom of card */
+}
+
+.card-back {
+  justify-content: space-evenly; /* Space buttons evenly on card /*/
+}
+ 
+.card-back {
+  /* Flip back of card horizontally so it does not appear mirrored. */
+  transform: rotateY(180deg);
+}
+
+.account-card {
+  /* ---- Font & Text ---- */
+    font-family: ui-rounded;
+    text-align: left;
+    color: white;
+  /* ---- Positioning & Sizing ---- */
+    position: relative; /* Child element is absolute */
+    width: 15rem;
+    height: 10rem;
+    margin-right: 2rem;
+  /* ----- Border ----- */
+    border-radius: 1.5rem;
+  /* ----- Transitions ----- */
+    transition: transform .9s;
+    transform-style: preserve-3d;
+}
+
+.card-button-split {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Account name */
+.account-card h3 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 300;
+}
+
+.account-card .btn-light {
+  background: hsla(0, 0%, 100%, .6);
+}
+
+/* Current account balance text */
+.account-card .balance {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Account logo, current balance and name */
+.account-card section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Account number (if available) */
+.account-card footer {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.account-card footer p {
+  margin: 0;
+  line-height: 1;
+}
+
+/* Prepend hidden symbols to start of account number (ex. ••••1234) */
+.account-number::before {
+  content: "••••";
+}
+
+/* Financial Institution logo or generic account icon */
+.account-card .logo {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 .2rem .5rem hsla(0, 0%, 25%, 0.697);
+}
+
+  /* Animate account cards */
+  /* https://1stwebdesigner.com/learn-how-to-create-flip-cards-using-css/ */
+  
+  /* Add 3D perspective to flipping animation */
+  .card-flip {
+    perspective: 500px;
+  }
+  
+  /* Animate flipping of card and use drop-shadow to show selection */
+  .card-flip:hover .account-card {
+    transform: rotateY(180deg);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.4);
+  }
+
+/* Bootstrap Icons */
+/* -------------------------------------------------------------------------- */
+
+/* Leave a gap between icon and text */
+.bi {
+  margin: .5rem; /* bi = Bootstrap Icons */
+}
+
+/* Override Bootstrap class for rounded corners */
+/* Used in Paisa for login modals etc. */
+.rounded-3 {
+  border-radius: 1.5rem !important; /* Increase padding */
+  padding: 3rem; /* Increase Radius */
+}
+
+.modal-content {
+  border: none;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 .75rem 2rem 0 rgba(0,0,0,0.2);
+}
+
+.btn {
+  border-radius: .75rem !important;
+  padding: .5rem 1rem;
 }

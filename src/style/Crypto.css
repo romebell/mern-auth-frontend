@@ -1,0 +1,76 @@
+.pageheading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#low {
+  color: red;
+}
+
+#high {
+  color: rgb(15, 161, 15);
+}
+#cryptoT {
+  text-transform: uppercase;
+}
+.crypto img {
+  display: flex;
+  height: 42px;
+  width: 42px;
+}
+
+.search {
+  display: flex;
+  width: 320px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  border:thin;
+}
+
+.crypto-container {
+  display: flex;
+  text-align: center;
+}
+
+#cur {
+  width: 110px;
+}
+.crypto h1 {
+  font-size: 16px;
+  width: 150px;
+}
+
+.crypto {
+  display: flex;
+  align-items: center;
+  padding-right: 24px;
+  min-width: 300px;
+}
+
+.crp {
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  width: 100%;
+}
+.cpo {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  background: white;
+  border-radius: 2rem;
+  margin: 0 5rem;
+  padding: 3rem 0;
+}
+
+.crypto-align {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 75px;
+  border-bottom: 1px solid;
+  width: 850px;
+  justify-content: flex-start;
+}

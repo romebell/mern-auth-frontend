@@ -9,18 +9,24 @@ import './App.css';
 
 // Components
 import Signup from './components/Signup';
-import About from './components/About';
-import Footer from './components/Footer';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Navbar from './components/global/Navbar';
+import Footer from './components/global/Footer';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
+import AddAccount from './components/transaction-account/AddAccount';
+import Account from './components/Account';
+import Stock from './components/Stock';
+import Dashboard from './components/Dashboard';
+import Crypto from './components/Crypto';
+import AccountIndex from './components/transaction-account/AccountIndex';
+import AddTransaction from './components/transactions/AddTransaction';
 
-const PrivateRoute = ({ component: Component, ...rest}) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem('jwtToken');
-  console.log('===> Hitting a Private Route');
+  console.log('Private Route ----------');
   return <Route {...rest} render={(props) => {
-    return token ? <Component {...rest} {...props} /> : <Redirect to="/login"/>
+    return token ? <Component {...rest} {...props} /> : <Redirect to="/login" />
   }} />
 }
 
@@ -29,7 +35,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
- 
+
   useEffect(() => {
     let token;
 
@@ -59,21 +65,29 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>MERN Authentication</h1>
+    <div className="d-flex flex-column h-100">
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className="container mt-5">
+      <main className="container mb-5">
         <Switch>
           <Route path='/signup' component={Signup} />
-          <Route 
+          <Route
             path="/login"
-            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
+            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
+          />
+          <Route
+            exact path="/"
+            render={(props) => <Welcome {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
           />
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-          <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
+          <PrivateRoute path="/dashboard" component={Dashboard} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/add-account" component={AddAccount} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/account/:id/add-transaction" component={AddTransaction} user={currentUser} handleLogout={handleLogout} />
+          <PrivateRoute path="/account/:id" component={AccountIndex} user={currentUser} handleLogout={handleLogout} />
+          <Route path="/account" component={Account} />
+          <Route path="/stock" component={Stock} />
+          <Route path="/crypto" component={Crypto} />
         </Switch>
-      </div>
+      </main>
       <Footer />
     </div>
   );
