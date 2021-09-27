@@ -1,70 +1,198 @@
-# Getting Started with Create React App
+# MERN Authentication Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `App Component`
 
-## Available Scripts
+### Imports for `App`
 
-In the project directory, you can run:
+```jsx
+// Imports
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
 
-### `yarn start`
+// CSS
+import './App.css';
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+// Components
+import Signup from './components/Signup';
+import About from './components/About';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
+import Welcome from './components/Welcome';
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `useState` inside `App`
 
-### `yarn test`
+```jsx
+function App() {
+  // Set state values
+  const [currentUser, setCurrentUser] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `PrivateRoute`
 
-### `yarn build`
+```jsx
+const PrivateRoute = ({ component: Component, ...rest}) => {
+  let token = localStorage.getItem('jwtToken');
+  console.log('===> Hitting a Private Route');
+  return <Route {...rest} render={(props) => {
+    return token ? <Component {...rest} {...props} /> : <Redirect to="/login"/>
+  }} />
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `useEffect` inside `App`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```jsx
+useEffect(() => {
+    let token;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    if (!localStorage.getItem('jwtToken')) {
+      setIsAuthenticated(false);
+      console.log('====> Authenticated is now FALSE');
+    } else {
+      token = jwt_decode(localStorage.getItem('jwtToken'));
+      setAuthToken(localStorage.getItem('jwtToken'));
+      setCurrentUser(token);
+    }
+  }, []);
+```
 
-### `yarn eject`
+### `nowCurrentUser`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```jsx
+const nowCurrentUser = (userData) => {
+    console.log('===> nowCurrent is here.');
+    setCurrentUser(userData);
+    setIsAuthenticated(true);
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `handleLogout`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```jsx
+const handleLogout = () => {
+    if (localStorage.getItem('jwtToken')) {
+        // remove token for localStorage
+        localStorage.removeItem('jwtToken');
+        setCurrentUser(null);
+        setIsAuthenticated(false);
+    }
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `return` of `App`
 
-## Learn More
+```jsx
+return (
+<div className="App">
+    <h1>MERN Authentication</h1>
+    <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+    <div className="container mt-5">
+        <Switch>
+            <Route path='/signup' component={Signup} />
+            <Route 
+            path="/login"
+            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
+            />
+            <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
+            <Route exact path="/" component={Welcome} />
+            <Route path="/about" component={About} />
+        </Switch>
+    </div>
+    <Footer />
+</div>
+);
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Finished
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```jsx
+// Imports
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
 
-### Code Splitting
+// CSS
+import './App.css';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// Components
+import Signup from './components/Signup';
+import About from './components/About';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
+import Welcome from './components/Welcome';
 
-### Analyzing the Bundle Size
+const PrivateRoute = ({ component: Component, ...rest}) => {
+  let token = localStorage.getItem('jwtToken');
+  console.log('===> Hitting a Private Route');
+  return <Route {...rest} render={(props) => {
+    return token ? <Component {...rest} {...props} /> : <Redirect to="/login"/>
+  }} />
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+function App() {
+  // Set state values
+  const [currentUser, setCurrentUser] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-### Making a Progressive Web App
+ 
+  useEffect(() => {
+    let token;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    if (!localStorage.getItem('jwtToken')) {
+      setIsAuthenticated(false);
+      console.log('====> Authenticated is now FALSE');
+    } else {
+      token = jwt_decode(localStorage.getItem('jwtToken'));
+      setAuthToken(localStorage.getItem('jwtToken'));
+      setCurrentUser(token);
+    }
+  }, []);
 
-### Advanced Configuration
+  const nowCurrentUser = (userData) => {
+    console.log('===> nowCurrent is here.');
+    setCurrentUser(userData);
+    setIsAuthenticated(true);
+  }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  const handleLogout = () => {
+    if (localStorage.getItem('jwtToken')) {
+      // remove token for localStorage
+      localStorage.removeItem('jwtToken');
+      setCurrentUser(null);
+      setIsAuthenticated(false);
+    }
+  }
 
-### Deployment
+  return (
+    <div className="App">
+      <h1>MERN Authentication</h1>
+      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+      <div className="container mt-5">
+        <Switch>
+          <Route path='/signup' component={Signup} />
+          <Route 
+            path="/login"
+            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
+          />
+          <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
+          <Route exact path="/" component={Welcome} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </div>
+      <Footer />
+    </div>
+  );
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App;
+```

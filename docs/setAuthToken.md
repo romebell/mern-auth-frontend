@@ -1,3 +1,6 @@
+### `setAuthToken`
+
+```jsx
 import axios from 'axios';
 
 // This utility will add the authorized user's JWT to the request header
@@ -14,3 +17,4 @@ const setAuthToken = (token) => {
 }
 
 export default setAuthToken;
+```
