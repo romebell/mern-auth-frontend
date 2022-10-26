@@ -1,3 +1,27 @@
+# Setup
+
+Due to this project using an older package not fully supported on node17+ we'll need to run one initial command before we run our npm install. 
+
+If you are on mac or linux, run the following command:
+
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+for windows users use one of these two commands:
+
+command prompt: 
+
+```
+set NODE_OPTIONS=--openssl-legacy-provider
+```
+
+powershell:
+
+```
+$env:NODE_OPTIONS = "--openssl-legacy-provider"
+```
+
 # MERN Authentication Frontend
 
 | Components | Links to Code | Description |
