@@ -36,6 +36,7 @@ function App() {
     if (!localStorage.getItem('jwtToken')) {
       setIsAuthenticated(false);
       console.log('====> Authenticated is now FALSE');
+      console.log('change the app')
     } else {
       token = jwt_decode(localStorage.getItem('jwtToken'));
       setAuthToken(localStorage.getItem('jwtToken'));
